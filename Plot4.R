@@ -25,7 +25,7 @@ df_scaled <- acc_emiss_year/1000000
 b<- barplot(df_scaled,ylab="PM_2.5 (Million tons)",
             main="Coal combustion related PM_2.5 yearly emissions in USA",xlab="",axis.lty=1, ylim=c(0, 1.2*round(df_scaled[1],2)))
 #par(mar = c(5, 4, 6, 2))
-percent_labels <- paste0("-",100*(1-round(df_scaled/df_scaled[1],3)),"%")
+percent_labels <- paste0(100*(round((df_scaled-df_scaled[1])/df_scaled[1],3)),"%")
 percent_labels[1] <- "1999 Reference: 100%"
 text(x=b,y=as.vector(df_scaled),labels=percent_labels, pos=3,col="black",cex=0.75) 
 dev.off()
