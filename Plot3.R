@@ -37,6 +37,13 @@ for (i in types_emission)
 }
 
 # Open the graphic device
-png(file = "Plot3.png", width = 1000, height = 480, bg = "transparent")
-ggplot(data_frame_sums,aes(x=Year, y= Emissions, group = Type, colour=Type)) + geom_line(size=1) + geom_point() + ylab("PM_2.5 (tons)") + ggtitle("Total PM_2.5 yearly emissions") 
+png(file = "Plot3.png", width = 1000, height = 800, bg = "transparent")
+gr <-ggplot(data_frame_sums,aes(x=Year, y= Emissions, group = Type, colour=Type)) 
+gr <- gr + geom_line(size=1) + geom_point() + ylab("PM_2.5 (tons)") + ggtitle("Total PM_2.5 yearly emissions")
+gr <- gr + geom_text(data = data_frame_sums[data_frame_sums$Year=="1999",], aes(label = round(Emissions,0)), hjust = 1.2,vjust =0)
+gr <- gr + geom_text(data = data_frame_sums[data_frame_sums$Year %in% c("2002","2005"),], aes(label = round(Emissions,0)), hjust = -0.4,vjust = -0.4)
+gr <- gr + geom_text(data = data_frame_sums[data_frame_sums$Year=="2008" & data_frame_sums$Type!="NON-ROAD" ,], aes(label = round(Emissions,0)), hjust = -0.4,vjust =0)
+gr <- gr + geom_text(data = data_frame_sums[data_frame_sums$Year=="2008" & data_frame_sums$Type=="NON-ROAD" ,], aes(label = round(Emissions,0)), hjust = -0.4,vjust =0.4)
+
+print(gr)
 dev.off()
