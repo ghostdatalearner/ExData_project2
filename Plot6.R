@@ -4,7 +4,7 @@
 #
 # Project 2
 #
-# Plot5.R
+# Plot6.R
 #
 
 # Read data
